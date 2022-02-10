@@ -64,6 +64,8 @@ type _runtime struct {
 	random       func() float64
 	stackLimit   int
 	traceLimit   int
+	evalBudget   int
+	evalCount    int
 
 	labels []string // FIXME
 	lck    sync.Mutex

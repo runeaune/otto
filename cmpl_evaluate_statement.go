@@ -21,6 +21,13 @@ func (self *_runtime) cmpl_evaluate_nodeStatement(node _nodeStatement) Value {
 		}
 	}
 
+	if self.evalBudget > 0 {
+		if self.evalCount >= self.evalBudget {
+			panic("eval budget consumed")
+		}
+		self.evalCount++
+	}
+
 	switch node := node.(type) {
 
 	case *_nodeBlockStatement:

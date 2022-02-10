@@ -370,6 +370,13 @@ func (self Otto) SetRandomSource(fn func() float64) {
 	self.runtime.random = fn
 }
 
+// SetEvalBudget caps the number of statements and expressions that the vm will
+// evaluate, causing a panic if execution has not completed with this limit.
+func (self Otto) SetEvalBudget(budget int) {
+	self.runtime.evalBudget = budget
+	self.runtime.evalCount = 0
+}
+
 // SetStackDepthLimit sets an upper limit to the depth of the JavaScript
 // stack. In simpler terms, this limits the number of "nested" function calls
 // you can make in a particular interpreter instance.
